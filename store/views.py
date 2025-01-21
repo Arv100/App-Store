@@ -4,6 +4,7 @@ from .models import App, CustomUser
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from .vercel_blob_update import add_to_blob, delete_from_blob
 
 def is_admin(func):
     def check(request,*args, **kwargs):
@@ -32,7 +33,9 @@ def admin_add_app(request):
         name = request.POST.get('name')
         description = request.POST.get('description')
         apk_file = request.FILES.get('apk-file')  # File input for APK
+        apk_url = add_to_blob('APK',apk_file)['url']
         icon = request.FILES.get('logo')  # File input for Icon
+        icon_url = add_to_blob('ICON',icon)['url']
         points = request.POST.get('points')
         
         # Ensure required fields are filled
@@ -46,8 +49,8 @@ def admin_add_app(request):
             name=name,
             description=description,
             created_by=request.user,  # Set the user who created the app
-            apk_file=apk_file,
-            icon=icon,
+            apk_file=apk_url,
+            icon=icon_url,
             points=points
         )
         app.save()
@@ -60,8 +63,11 @@ def admin_add_app(request):
 def admin_view(request):
         return render(request,'store/admin.html')
 
+@is_admin
 def admin_delete_vew(requests,app_name):
     app = App.objects.filter(name=app_name)
+    delete_from_blob(app.icon)
+    delete_from_blob(app.apk_file)
     return render(requests,'store/delete_app.html',{'apps':app})
 
 def register(request):
