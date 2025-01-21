@@ -21,14 +21,16 @@ def admin_home(requests):
 
 @is_admin
 def admin_delete_app(request,app_name):
-    app = App.objects.filter(name=app_name)
+    app = App.objects.get(name=app_name)
+    print(app)
+    delete_from_blob(app.icon)
+    delete_from_blob(app.apk_file)
     app.delete()
     messages.success(request,'App removed successfully')
     return redirect('Admin')
 
 @is_admin
 def admin_add_app(request):
-
     if request.method == "POST":
         name = request.POST.get('name')
         description = request.POST.get('description')
@@ -66,8 +68,6 @@ def admin_view(request):
 @is_admin
 def admin_delete_vew(requests,app_name):
     app = App.objects.filter(name=app_name)
-    delete_from_blob(app.icon)
-    delete_from_blob(app.apk_file)
     return render(requests,'store/delete_app.html',{'apps':app})
 
 def register(request):
