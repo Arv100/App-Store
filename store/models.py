@@ -1,4 +1,4 @@
-from django.db.models import Model, CharField, TextField, DateTimeField, ForeignKey, FileField, ImageField, CASCADE, IntegerField
+from django.db.models import Model, CharField, TextField, DateTimeField, ForeignKey, CASCADE, IntegerField
 from django.conf import settings
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.db import models
@@ -53,7 +53,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     date_joined = models.DateTimeField(_('date joined'), auto_now_add=True)
     points_earned = IntegerField(default=0)
     objects = CustomUserManager()
-    screenshot = ImageField(upload_to='screenshots/', blank=True, null=True)
+    screenshot = CharField(max_length=500, blank=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['full_name']
@@ -70,8 +70,8 @@ class App(Model):
     created_by = ForeignKey('store.CustomUser', on_delete=CASCADE)
     version = CharField(max_length=50, blank=True)
     points = IntegerField(default=0)
-    apk_file = FileField(upload_to='android_apps/', blank=True, null=True)
-    icon = ImageField(upload_to='app_icons/', blank=True, null=True)
+    apk_file = CharField(max_length=500, blank=True)
+    icon = CharField(max_length=500, blank=True)
 
     def __str__(self):
         return self.name
