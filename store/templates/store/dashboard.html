@@ -66,7 +66,7 @@
     <a href="{% url 'Update' app.name %}">
         <div class="app-card">
             {% if app.icon %}
-            <img src="{{ app.icon.url }}" alt="{{ app.name }} Icon" class="app-image">
+            <img src="{{ app.icon }}" alt="{{ app.name }} Icon" class="app-image">
             {% else %}
             <p>No icon available</p>
             {% endif %}

@@ -74,6 +74,11 @@ label {
     display: none; /* Hide the file input */
 }
 
+.app-points {
+    background-color: aqua;
+    text-align: center;
+}
+
 .upload-area {
     margin-top: 1.25rem;
     margin-right: 20px;

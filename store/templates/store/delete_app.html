@@ -12,9 +12,10 @@
     <div id="body">
         {% for app in apps %}
         <div class="app-card">
-            <img src="{{ app.icon.url }}" alt="{{ app.name }} Icon" class="app-image">
+            <img src="{{ app.icon }}" alt="{{ app.name }} Icon" class="app-image">
             <h2 class="app-name">{{ app.name }}</h2>
             <p class="app-description">{{ app.description }}</p>
+            <p class="app-points">Points: {{ app.points }}</p>
             <p class="app-points">Points: {{ app.points }}</p>
             <a href="{% url 'Delete' app.name %}">
                 <button id="Logout" class="default">
