@@ -1,0 +1,37 @@
+{% extends "store/base.html" %}
+{% block title %} Delete App {% endblock %}
+
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/app-edit.css' %}">
+
+{% endblock %}
+{% block body %}
+<div class="apps">
+    <div id="body">
+        {% for app in apps %}
+        <div class="app-card">
+            <img src="{{ app.icon.url }}" alt="{{ app.name }} Icon" class="app-image">
+            <h2 class="app-name">{{ app.name }}</h2>
+            <p class="app-description">{{ app.description }}</p>
+            <p class="app-points">Points: {{ app.points }}</p>
+            <a href="{% url 'Delete' app.name %}">
+                <button id="Logout" class="default">
+                    <span class="circle1"></span>
+                    <span class="circle2"></span>
+                    <span class="circle3"></span>
+                    <span class="circle4"></span>
+                    <span class="circle5"></span>
+                    <span class="text">Delete app</span>
+                </button>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+    <div>
+        
+    </div>
+</div>
+
+{% endblock %}

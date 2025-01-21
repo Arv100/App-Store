@@ -1,0 +1,50 @@
+{% extends "store/base.html" %}
+{% block title %} Admin Home {% endblock %}
+
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/admin.css' %}">
+{% endblock %}
+
+{% block body %}
+<div id="top">
+    <h1>Admin panel</h1>
+    <a href="{% url 'Admin view' %}">
+        <button id="login" class="default" style="margin-left: 1300px;">
+            <span class="circle1"></span>
+            <span class="circle2"></span>
+            <span class="circle3"></span>
+            <span class="circle4"></span>
+            <span class="circle5"></span>
+            <span class="text">Add apps</span>
+        </button>
+    </a>
+    <a href="{% url 'Logout' %}">
+        <button id="Logout" class="default">
+            <span class="circle1"></span>
+            <span class="circle2"></span>
+            <span class="circle3"></span>
+            <span class="circle4"></span>
+            <span class="circle5"></span>
+            <span class="text">Logout</span>
+        </button>
+    </a>
+</div>
+<hr>
+<div id="body">
+    {% for app in apps %}
+    <a href="{% url 'A-Update' app.name %}">
+        <div class="app-card">
+            {% if app.icon %}
+            <img src="{{ app.icon.url }}" alt="{{ app.name }} Icon" class="app-image">
+            {% else %}
+            <p>No icon available</p>
+            {% endif %}
+            <h2 class="app-name">{{ app.name }}</h2>
+            <p class="app-description">{{ app.description }}</p>
+        </div>
+    </a>
+    {% endfor %}
+</div>
+{% endblock %}

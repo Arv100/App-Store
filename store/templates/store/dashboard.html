@@ -1,0 +1,80 @@
+{% extends "store/base.html" %}
+{% block title %} Dashboard {% endblock %}
+
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+
+{% endblock %}
+
+{% block body %}
+
+<div id="top">
+
+        <button id="Home" class="default" disabled>
+            <span class="circle1"></span>
+            <span class="circle2"></span>
+            <span class="circle3"></span>
+            <span class="circle4"></span>
+            <span class="circle5"></span>
+            <span class="text">Home</span>
+        </button>
+
+        <button id="Profile" class="default" disabled>
+            <span class="circle1"></span>
+            <span class="circle2"></span>
+            <span class="circle3"></span>
+            <span class="circle4"></span>
+            <span class="circle5"></span>
+            <span class="text">Profile</span>
+        </button>
+
+        <button id="Points" class="default" disabled>
+            <span class="circle1"></span>
+            <span class="circle2"></span>
+            <span class="circle3"></span>
+            <span class="circle4"></span>
+            <span class="circle5"></span>
+            <span class="text">Points: {{points}}</span>
+        </button>
+
+        <button id="Tasks" class="default" disabled>
+            <span class="circle1"></span>
+            <span class="circle2"></span>
+            <span class="circle3"></span>
+            <span class="circle4"></span>
+            <span class="circle5"></span>
+            <span class="text">Tasks</span>
+        </button>
+
+    <a href="{% url 'Logout' %}">
+        <button id="Logout" class="default">
+            <span class="circle1"></span>
+            <span class="circle2"></span>
+            <span class="circle3"></span>
+            <span class="circle4"></span>
+            <span class="circle5"></span>
+            <span class="text">Logout</span>
+        </button>
+    </a>
+</div>
+<hr>
+<h1>Welcome {{ name }} !</h1>
+<div id="body">
+    {% for app in apps %}
+    <a href="{% url 'Update' app.name %}">
+        <div class="app-card">
+            {% if app.icon %}
+            <img src="{{ app.icon.url }}" alt="{{ app.name }} Icon" class="app-image">
+            {% else %}
+            <p>No icon available</p>
+            {% endif %}
+            <h2 class="app-name">{{ app.name }}</h2>
+            <p class="app-description">{{ app.description }}</p>
+        </div>
+    </a>
+    {% endfor %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,144 @@
+:root {
+  --background-color: #FCDEC0;
+  /* Light warm beige for the background */
+  --primary-color: #7D5A50;
+  /* Deep brown for buttons and important elements */
+  --secondary-color: #B4846C;
+  /* Warm taupe for borders, footers, or cards */
+  --accent-color: #E5B299;
+  /* Soft peach for highlights or hover effects */
+  --text-color: #7D5A50;
+  /* Deep brown for high readability on the light background */
+  --input-bg-color: #E5B299;
+  /* Soft peach for input fields to maintain harmony */
+}
+
+
+
+* {
+  font-family: 'Poppins';
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+body {
+  background-color: var(--background-color);
+  color: white;
+}
+
+
+h1,
+h2 {
+  color: var(--primary-color);
+}
+
+hr {
+  border: none;
+  /* Remove default border style */
+  border-top: 1px solid var(--accent-color);
+  /* Add a thin border */
+  height: 1px;
+  /* Set the height */
+  background-color: var(--accent-color);
+  /* Fallback for older browsers */
+  /* margin: 20px 0; Optional: Adjust spacing around the hr */
+}
+
+a {
+  color: var(--primary-color);
+}
+
+a:hover {
+  color: var(--secondary-color);
+}
+
+button.default {
+  background-color: var(--primary-color);
+  color: white;
+  font-weight: 500;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+button.default span:not(:nth-child(6)) {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: 30px;
+  width: 30px;
+  background-color: var(--secondary-color);
+  border-radius: 50%;
+  transition: .6s ease;
+}
+
+button.default span:nth-child(6) {
+  position: relative;
+}
+
+button.default span:nth-child(1) {
+  transform: translate(-3.3em, -4em);
+}
+
+button.default span:nth-child(2) {
+  transform: translate(-6em, 1.3em);
+}
+
+button.default span:nth-child(3) {
+  transform: translate(-.2em, 1.8em);
+}
+
+button.default span:nth-child(4) {
+  transform: translate(3.5em, 1.4em);
+}
+
+button.default span:nth-child(5) {
+  transform: translate(3.5em, -3.8em);
+}
+
+button.default:hover span:not(:nth-child(6)) {
+  transform: translate(-50%, -50%) scale(4);
+  transition: 1.5s ease;
+}
+
+/* Notification Container */
+.notification-container {
+  position: fixed;
+  top: -100px; /* Initially hidden (out of view) */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000; /* Ensure it's above other content */
+  transition: top 0.5s ease-in-out; /* Smooth slide-in and slide-out effect */
+}
+
+/* Notification Style */
+.notification {
+  background-color: #28a745; /* Success by default */
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  font-size: 14px;
+}
+
+/* Alert Colors */
+.alert-success {
+  background-color: #28a745;
+}
+
+.alert-error {
+  background-color: #dc3545;
+}
+
+.alert-info {
+  background-color: #17a2b8;
+}
+
+.alert-warning {
+  background-color: #ffc107;
+  color: black;
+}

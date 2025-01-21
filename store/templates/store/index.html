@@ -1,0 +1,39 @@
+{% extends "store/base.html" %}
+{% block title %}Index{% endblock %}
+
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock %}
+
+{% block body %}
+
+<div id="top">
+    <a href="{% url 'Login' %}">
+        <button id="login" class="default">
+            <span class="circle1"></span>
+            <span class="circle2"></span>
+            <span class="circle3"></span>
+            <span class="circle4"></span>
+            <span class="circle5"></span>
+            <span class="text">Login</span>
+        </button>
+    </a>
+    <a href="{% url 'Register' %}">
+        <button id="sign_up" class="default">
+            <span class="circle1"></span>
+            <span class="circle2"></span>
+            <span class="circle3"></span>
+            <span class="circle4"></span>
+            <span class="circle5"></span>
+            <span class="text">Sign up</span>
+        </button>
+    </a>
+</div>
+<hr>
+<div class="index">
+    <h1>App store</h1>
+</div>
+
+{% endblock %}
