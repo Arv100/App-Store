@@ -142,10 +142,12 @@ def update_app(requests,app_name):
 @login_required
 def update_points(request,app_name):
     screenshot = request.FILES.get('screenshot')
+    add_to_blob('screenshot',screenshot)['url']
     app = App.objects.get(name = app_name)
     app_points = app.points
     user = CustomUser.objects.get(email = request.user)
     user.points_earned += app_points
     user.screenshot = screenshot
     user.save()
+    messages.success(request, 'Points added successfully')
     return redirect('Dashboard')
